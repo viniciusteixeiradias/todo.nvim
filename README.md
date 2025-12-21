@@ -50,7 +50,11 @@ require("neovim-todo").setup({
     global_fallback = "~/.todo.md", -- Fallback path
     create_if_missing = true,       -- Create file if it doesn't exist
   },
-  patterns = { "TODO", "FIXME" },   -- Comment patterns to search
+  patterns = {                       -- Comment patterns with highlight colors
+    TODO = { fg = "#000000", bg = "#7dd3fc" },
+    FIXME = { fg = "#000000", bg = "#fca5a5" },
+  },
+  highlight_buffer = true,          -- Highlight TODOs in buffers (set to false to disable)
   ui = {
     floating_window = {
       width = 0.6,

@@ -7,7 +7,11 @@ local defaults = {
     global_fallback = "~/.todo.md",
     create_if_missing = true,
   },
-  patterns = { "TODO", "FIXME" },
+  patterns = {
+    TODO = { fg = "#000000", bg = "#7dd3fc" },
+    FIXME = { fg = "#000000", bg = "#fca5a5" },
+  },
+  highlight_buffer = true,
   ui = {
     add_todo_method = "floating",
     search_results = "telescope",

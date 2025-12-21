@@ -3,10 +3,21 @@ local M = {}
 local config = require("neovim-todo.config")
 local utils = require("neovim-todo.utils")
 
-function M.build_pattern()
+local function get_pattern_names()
+  return vim.tbl_keys(config.get().patterns)
+end
+
+local function setup_highlights()
   local patterns = config.get().patterns
+  for name, hl in pairs(patterns) do
+    vim.api.nvim_set_hl(0, "NeovimTodo" .. name, { default = true, fg = hl.fg, bg = hl.bg, bold = true })
+  end
+end
+
+function M.build_pattern()
+  local pattern_names = get_pattern_names()
   local comment_prefixes = "(//|#|--|/\\*|%|;|<!--)"
-  return comment_prefixes .. "\\s*(" .. table.concat(patterns, "|") .. "):"
+  return comment_prefixes .. "\\s*(" .. table.concat(pattern_names, "|") .. "):"
 end
 
 function M.build_ignore_args()
@@ -19,13 +30,13 @@ function M.build_ignore_args()
 end
 
 local function extract_match_type(text)
-  local patterns = config.get().patterns
-  for _, pattern in ipairs(patterns) do
-    if text:match(pattern) then
-      return pattern
+  local pattern_names = get_pattern_names()
+  for _, name in ipairs(pattern_names) do
+    if text:match(name) then
+      return name
     end
   end
-  return patterns[1] or "TODO"
+  return pattern_names[1] or "TODO"
 end
 
 function M.search()
@@ -66,6 +77,8 @@ function M.show_telescope(results)
     return
   end
 
+  setup_highlights()
+
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
   local actions = require("telescope.actions")
@@ -83,7 +96,7 @@ function M.show_telescope(results)
 
   local make_display = function(entry)
     return displayer({
-      { entry.type, "TelescopeResultsIdentifier" },
+      { entry.type, "NeovimTodo" .. entry.type },
       { vim.fn.fnamemodify(entry.filename, ":~:.") .. ":" .. entry.lnum, "TelescopeResultsLineNr" },
       { entry.text, "TelescopeResultsComment" },
     })
