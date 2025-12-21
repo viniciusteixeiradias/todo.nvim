@@ -1,2 +1,0 @@
-- [ ] Insert TODOs into TODO.md file
-- [ ] Search for TODOs in project files
