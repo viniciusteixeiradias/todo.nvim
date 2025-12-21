@@ -64,7 +64,7 @@ function M.add(text)
   if file then
     file:write(formatted .. "\n")
     file:close()
-    utils.notify("Todo added: " .. text)
+    utils.notify("✓ Todo added: " .. text)
   else
     utils.notify("Failed to write to " .. path, vim.log.levels.ERROR)
   end
