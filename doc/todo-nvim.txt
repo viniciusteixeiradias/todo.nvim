@@ -1,0 +1,147 @@
+*todo-nvim.txt*  Quick notes and TODO comment search
+
+Author:  Vinicius Dias
+License: MIT
+
+==============================================================================
+CONTENTS                                                   *todo-nvim-contents*
+
+    1. Introduction ............................ |todo-nvim-introduction|
+    2. Requirements ............................ |todo-nvim-requirements|
+    3. Installation ............................ |todo-nvim-installation|
+    4. Commands ................................ |todo-nvim-commands|
+    5. Keymaps ................................. |todo-nvim-keymaps|
+    6. Configuration ........................... |todo-nvim-configuration|
+
+==============================================================================
+1. INTRODUCTION                                        *todo-nvim-introduction*
+
+todo.nvim is a lightweight plugin for quick note-taking and TODO comment
+searching. It provides:
+
+- Quick Notes: Capture todos instantly via floating window or command,
+  saved to a TODO.md file
+- Comment Search: Find TODO, FIXME, and custom patterns in your codebase
+  using Telescope
+- Syntax Highlighting: Highlight TODO comments in buffers with custom colors
+
+==============================================================================
+2. REQUIREMENTS                                        *todo-nvim-requirements*
+
+- Neovim >= 0.9.0
+- telescope.nvim (https://github.com/nvim-telescope/telescope.nvim)
+- ripgrep (optional, for faster search)
+
+==============================================================================
+3. INSTALLATION                                        *todo-nvim-installation*
+
+Using lazy.nvim:
+>lua
+    {
+      "viniciusteixeiradias/todo.nvim",
+      dependencies = { "nvim-telescope/telescope.nvim" },
+      config = function()
+        require("todo-nvim").setup()
+      end,
+    }
+<
+
+==============================================================================
+4. COMMANDS                                                *todo-nvim-commands*
+
+                                                                       *:TodoAdd*
+:TodoAdd [text]         Add a quick note to your TODO.md file.
+                        Opens a floating input if no text is provided.
+                        Examples: >
+                            :TodoAdd Fix login bug
+                            :TodoAdd
+<
+                                                                    *:TodoSearch*
+:TodoSearch             Search for TODO/FIXME comments in your codebase.
+                        Uses Telescope for fuzzy finding and preview.
+                        Patterns are configurable (see |todo-nvim-config-patterns|).
+
+                                                                      *:TodoOpen*
+:TodoOpen               Open the TODO.md file for editing.
+
+==============================================================================
+5. KEYMAPS                                                  *todo-nvim-keymaps*
+
+Default keymaps (can be disabled in config):
+
+    <leader>ta          Add a new todo
+    <leader>ts          Search TODO comments
+    <leader>to          Open todo file
+
+==============================================================================
+6. CONFIGURATION                                      *todo-nvim-configuration*
+
+Call the setup function with your options:
+>lua
+    require("todo-nvim").setup({
+      todo_file = {
+        path = nil,                     -- Custom path (nil = auto-detect)
+        use_project_local = true,       -- Look for todo.md in project root
+        global_fallback = "~/.todo.md", -- Fallback path
+        create_if_missing = true,       -- Create file if it doesn't exist
+      },
+      patterns = {
+        TODO = { fg = "#000000", bg = "#7dd3fc" },
+        FIXME = { fg = "#000000", bg = "#fca5a5" },
+      },
+      highlight_buffer = true,          -- Highlight TODOs in buffers
+      ui = {
+        floating_window = {
+          width = 0.6,
+          height = 3,
+          border = "rounded",
+          title = " Add Todo ",
+        },
+      },
+      format = {
+        checkbox = true,
+        timestamp = false,
+        timestamp_format = "%Y-%m-%d",
+        prefix = "- ",
+      },
+      keymaps = {
+        add_todo = "<leader>ta",        -- Set to false to disable
+        search_todos = "<leader>ts",
+        open_todo_file = "<leader>to",
+      },
+      search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
+    })
+<
+
+                                                     *todo-nvim-config-patterns*
+patterns ~
+    Define which comment patterns to search and their highlight colors.
+    Each key is the pattern name, value is { fg, bg } colors.
+    Add your own patterns as needed.
+
+    Default patterns:
+>lua
+    patterns = {
+      TODO = { fg = "#000000", bg = "#7dd3fc" },   -- Light blue
+      FIXME = { fg = "#000000", bg = "#fca5a5" },  -- Light red
+    }
+<
+    Example with additional patterns:
+>lua
+    patterns = {
+      TODO = { fg = "#000000", bg = "#7dd3fc" },
+      FIXME = { fg = "#000000", bg = "#fca5a5" },
+      NOTE = { fg = "#000000", bg = "#86efac" },   -- Light green
+      HACK = { fg = "#000000", bg = "#fdba74" },   -- Light orange
+      BUG = { fg = "#ffffff", bg = "#ef4444" },    -- Red
+    }
+<
+
+                                              *todo-nvim-config-highlight_buffer*
+highlight_buffer ~
+    Set to `false` to disable custom highlighting everywhere
+    (both in buffers and Telescope). Colors in patterns config
+    will be ignored.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:

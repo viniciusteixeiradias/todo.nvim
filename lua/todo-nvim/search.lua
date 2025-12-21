@@ -1,7 +1,7 @@
 local M = {}
 
-local config = require("neovim-todo.config")
-local utils = require("neovim-todo.utils")
+local config = require("todo-nvim.config")
+local utils = require("todo-nvim.utils")
 
 local function get_pattern_names()
   return vim.tbl_keys(config.get().patterns)
@@ -77,7 +77,10 @@ function M.show_telescope(results)
     return
   end
 
-  setup_highlights()
+  local highlight_enabled = config.get().highlight_buffer
+  if highlight_enabled then
+    setup_highlights()
+  end
 
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
@@ -95,10 +98,11 @@ function M.show_telescope(results)
   })
 
   local make_display = function(entry)
+    local type_hl = highlight_enabled and ("NeovimTodo" .. entry.type) or "TelescopeResultsIdentifier"
     return displayer({
-      { entry.type, "NeovimTodo" .. entry.type },
+      { entry.type,                                                      type_hl },
       { vim.fn.fnamemodify(entry.filename, ":~:.") .. ":" .. entry.lnum, "TelescopeResultsLineNr" },
-      { entry.text, "TelescopeResultsComment" },
+      { entry.text,                                                      "TelescopeResultsComment" },
     })
   end
 

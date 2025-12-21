@@ -1,6 +1,12 @@
-# neovim-todo
+# todo.nvim
 
-A Neovim plugin for managing todos: add items to a todo.md file and search for TODO/FIXME comments in your codebase.
+A lightweight Neovim plugin for quick note-taking and TODO comment searching.
+
+## Features
+
+- **Quick Notes** - Capture todos instantly via floating window or command line, saved to a `TODO.md` file
+- **Comment Search** - Find `TODO`, `FIXME`, and custom patterns in your codebase using Telescope
+- **Syntax Highlighting** - Highlight TODO comments directly in buffers with customizable colors
 
 ## Requirements
 
@@ -14,10 +20,23 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "your-username/neovim-todo",
+  "viniciusteixeiradias/todo.nvim",
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
-    require("neovim-todo").setup()
+    require("todo-nvim").setup()
+  end,
+}
+```
+
+To pin a specific version (otherwise pulls from main branch):
+
+```lua
+{
+  "viniciusteixeiradias/todo.nvim",
+  tag = "v1.0.0",
+  dependencies = { "nvim-telescope/telescope.nvim" },
+  config = function()
+    require("todo-nvim").setup()
   end,
 }
 ```
@@ -28,9 +47,9 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 | Command | Description |
 |---------|-------------|
-| `:TodoAdd [text]` | Add a todo item (opens floating input if no text provided) |
-| `:TodoSearch` | Search for TODO/FIXME comments with Telescope |
-| `:TodoOpen` | Open the todo.md file |
+| `:TodoAdd [text]` | Add a quick note. Opens floating input if no text provided |
+| `:TodoSearch` | Search for TODO/FIXME comments in your codebase |
+| `:TodoOpen` | Open the TODO.md file |
 
 ### Default Keymaps
 
@@ -43,18 +62,20 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ## Configuration
 
 ```lua
-require("neovim-todo").setup({
+require("todo-nvim").setup({
   todo_file = {
     path = nil,                     -- Custom path (nil = auto-detect)
     use_project_local = true,       -- Look for todo.md in project root
     global_fallback = "~/.todo.md", -- Fallback path
     create_if_missing = true,       -- Create file if it doesn't exist
   },
-  patterns = {                       -- Comment patterns with highlight colors
-    TODO = { fg = "#000000", bg = "#7dd3fc" },
-    FIXME = { fg = "#000000", bg = "#fca5a5" },
+  patterns = {                       -- Patterns to search (add your own)
+    TODO = { fg = "#000000", bg = "#7dd3fc" },   -- Light blue
+    FIXME = { fg = "#000000", bg = "#fca5a5" },  -- Light red
+    -- NOTE = { fg = "#000000", bg = "#86efac" },  -- Light green
+    -- HACK = { fg = "#000000", bg = "#fdba74" },  -- Light orange
   },
-  highlight_buffer = true,          -- Highlight TODOs in buffers (set to false to disable)
+  highlight_buffer = true,          -- Enable custom colors (false = no highlighting)
   ui = {
     floating_window = {
       width = 0.6,
@@ -65,7 +86,7 @@ require("neovim-todo").setup({
   },
   format = {
     checkbox = true,                -- Add [ ] checkbox
-    timestamp = false,              -- Add timestamp
+    timestamp = false,              -- Add timestamp "YYYY-MM-DD HH:MM"
     timestamp_format = "%Y-%m-%d",
     prefix = "- ",
   },
@@ -80,4 +101,4 @@ require("neovim-todo").setup({
 
 ## License
 
-MIT
+MIT License. See (LICENSE)[./LICENSE] file for details.

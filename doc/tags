@@ -1,0 +1,13 @@
+:TodoAdd	todo-nvim.txt	/*:TodoAdd*
+:TodoOpen	todo-nvim.txt	/*:TodoOpen*
+:TodoSearch	todo-nvim.txt	/*:TodoSearch*
+todo-nvim-commands	todo-nvim.txt	/*todo-nvim-commands*
+todo-nvim-config-highlight_buffer	todo-nvim.txt	/*todo-nvim-config-highlight_buffer*
+todo-nvim-config-patterns	todo-nvim.txt	/*todo-nvim-config-patterns*
+todo-nvim-configuration	todo-nvim.txt	/*todo-nvim-configuration*
+todo-nvim-contents	todo-nvim.txt	/*todo-nvim-contents*
+todo-nvim-installation	todo-nvim.txt	/*todo-nvim-installation*
+todo-nvim-introduction	todo-nvim.txt	/*todo-nvim-introduction*
+todo-nvim-keymaps	todo-nvim.txt	/*todo-nvim-keymaps*
+todo-nvim-requirements	todo-nvim.txt	/*todo-nvim-requirements*
+todo-nvim.txt	todo-nvim.txt	/*todo-nvim.txt*

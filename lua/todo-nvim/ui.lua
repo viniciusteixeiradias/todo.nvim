@@ -1,6 +1,6 @@
 local M = {}
 
-local config = require("neovim-todo.config")
+local config = require("todo-nvim.config")
 
 local function create_floating_window()
   local cfg = config.get().ui.floating_window

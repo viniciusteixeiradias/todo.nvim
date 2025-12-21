@@ -1,7 +1,7 @@
 local M = {}
 
-local config = require("neovim-todo.config")
-local utils = require("neovim-todo.utils")
+local config = require("todo-nvim.config")
+local utils = require("todo-nvim.utils")
 
 function M.get_path()
   local cfg = config.get().todo_file

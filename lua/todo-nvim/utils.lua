@@ -29,7 +29,7 @@ function M.is_ripgrep_available()
 end
 
 function M.notify(msg, level)
-  vim.notify(msg, level or vim.log.levels.INFO, { title = "neovim-todo" })
+  vim.notify(msg, level or vim.log.levels.INFO, { title = "todo.nvim" })
 end
 
 return M

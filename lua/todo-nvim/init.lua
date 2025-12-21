@@ -1,9 +1,9 @@
 local M = {}
 
-local ui = require("neovim-todo.ui")
-local search = require("neovim-todo.search")
-local config = require("neovim-todo.config")
-local todo_file = require("neovim-todo.todo-file")
+local ui = require("todo-nvim.ui")
+local search = require("todo-nvim.search")
+local config = require("todo-nvim.config")
+local todo_file = require("todo-nvim.todo-file")
 
 local function setup_highlights()
   local patterns = config.get().patterns
