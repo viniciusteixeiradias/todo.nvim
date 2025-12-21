@@ -75,7 +75,7 @@ require("todo-nvim").setup({
     -- NOTE = { fg = "#000000", bg = "#86efac" },  -- Light green
     -- HACK = { fg = "#000000", bg = "#fdba74" },  -- Light orange
   },
-  highlight_buffer = true,          -- Enable custom colors (false = no highlighting)
+  highlight_buffer = true,          -- Highlight patterns in buffers and Telescope
   ui = {
     floating_window = {
       width = 0.6,
@@ -91,9 +91,10 @@ require("todo-nvim").setup({
     prefix = "- ",
   },
   keymaps = {
-    add_todo = "<leader>ta",        -- Set to false to disable
+    add_todo = "<leader>ta",
     search_todos = "<leader>ts",
     open_todo_file = "<leader>to",
+    -- Set any keymap to false to disable it, e.g.: add_todo = false
   },
   search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
 })
