@@ -50,7 +50,7 @@ function M.format_todo(text)
   end
 
   if cfg.timestamp then
-    line = line .. os.date(cfg.timestamp_format) .. " "
+    line = line .. os.date(cfg.timestamp_format) .. " - "
   end
 
   return line .. text

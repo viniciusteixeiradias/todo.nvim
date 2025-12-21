@@ -5,7 +5,8 @@ local utils = require("neovim-todo.utils")
 
 function M.build_pattern()
   local patterns = config.get().patterns
-  return "(" .. table.concat(patterns, "|") .. "):?"
+  local comment_prefixes = "(//|#|--|/\\*|%|;|<!--)"
+  return comment_prefixes .. "\\s*(" .. table.concat(patterns, "|") .. "):"
 end
 
 function M.build_ignore_args()
