@@ -21,19 +21,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 {
   "viniciusteixeiradias/todo.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
-  config = function()
-    require("todo-nvim").setup()
-  end,
-}
-```
-
-To pin a specific version (otherwise pulls from main branch):
-
-```lua
-{
-  "viniciusteixeiradias/todo.nvim",
-  tag = "v1.0.0",
+  -- tag = "v1.0.0", -- optional: pin to a specific version
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
     require("todo-nvim").setup()
