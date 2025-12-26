@@ -110,7 +110,7 @@ Call the setup function with your options:
         open_todo_file = "<leader>to",
       },
       search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
-      auto_refresh_buffers = true,    -- Refresh open buffers on changes
+      auto_refresh_buffers = true,    -- Refresh open TODO.md buffers on changes
     })
 <
 
