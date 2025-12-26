@@ -24,7 +24,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
   -- version = "v1.0.0", -- optional: pin to a specific version
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
-    require("todo-nvim").setup()
+    require("todo").setup()
   end,
 }
 ```
@@ -50,7 +50,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ## Configuration
 
 ```lua
-require("todo-nvim").setup({
+require("todo").setup({
   todo_file = {
     path = nil,                     -- Custom path (nil = auto-detect)
     use_project_local = true,       -- Look for todo.md in project root

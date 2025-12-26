@@ -1,9 +1,9 @@
 local M = {}
 
-local ui = require("todo-nvim.ui")
-local search = require("todo-nvim.search")
-local config = require("todo-nvim.config")
-local todo_file = require("todo-nvim.todo-file")
+local ui = require("todo.ui")
+local search = require("todo.search")
+local config = require("todo.config")
+local todo_file = require("todo.todo-file")
 
 local function setup_highlights()
   local patterns = config.get().patterns
@@ -12,6 +12,7 @@ local function setup_highlights()
   end
 end
 
+-- TODO: Use LSP to get comment prefixes for different filetypes
 local comment_prefix_pattern = "\\(//\\|#\\|--\\|/\\*\\|%\\|;\\|<!--\\)\\s*\\zs"
 
 local function apply_buffer_highlights()
