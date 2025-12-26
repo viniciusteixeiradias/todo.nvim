@@ -85,6 +85,7 @@ require("todo-nvim").setup({
     -- Set any keymap to false to disable it, e.g.: add_todo = false
   },
   search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
+  auto_refresh_buffers = true,    -- Refresh open TODO.md buffers on changes
 })
 ```
 

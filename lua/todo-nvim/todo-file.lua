@@ -3,6 +3,19 @@ local M = {}
 local config = require("todo-nvim.config")
 local utils = require("todo-nvim.utils")
 
+local function refresh_open_buffers(filepath)
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) then
+      local buf_name = vim.api.nvim_buf_get_name(bufnr)
+      if buf_name == filepath then
+        vim.api.nvim_buf_call(bufnr, function()
+          vim.cmd("edit!")
+        end)
+      end
+    end
+  end
+end
+
 function M.get_path()
   local cfg = config.get().todo_file
 
@@ -64,6 +77,11 @@ function M.add(text)
   if file then
     file:write(formatted .. "\n")
     file:close()
+
+    if config.get().auto_refresh_buffers then
+      refresh_open_buffers(path)
+    end
+
     utils.notify("Todo added: " .. text)
   else
     utils.notify("Failed to write to " .. path, vim.log.levels.ERROR)
