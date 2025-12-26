@@ -1,3 +1,10 @@
+## [0.0.2](https://github.com/viniciusteixeiradias/todo.nvim/compare/v0.0.1...v0.0.2) (2025-12-26)
+
+
+### Bug Fixes
+
+* add buffer auto refresh ([#1](https://github.com/viniciusteixeiradias/todo.nvim/issues/1)) ([f6103cd](https://github.com/viniciusteixeiradias/todo.nvim/commit/f6103cd5480055b5188ba709f8a1631001575130))
+
 ## [0.0.1](https://github.com/viniciusteixeiradias/todo.nvim/compare/v0.0.0...v0.0.1) (2025-12-21)
 
 
