@@ -34,6 +34,7 @@ local defaults = {
     open_todo_file = "<leader>to",
   },
   search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
+  auto_refresh_buffers = true,
 }
 
 M._config = vim.deepcopy(defaults)

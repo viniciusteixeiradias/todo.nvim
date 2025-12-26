@@ -110,6 +110,7 @@ Call the setup function with your options:
         open_todo_file = "<leader>to",
       },
       search_ignore = { "node_modules", ".git", "vendor", "dist", "build" },
+      auto_refresh_buffers = true,    -- Refresh open TODO.md buffers on changes
     })
 <
 
@@ -142,6 +143,14 @@ highlight_buffer ~
     Set to `false` to disable custom highlighting everywhere
     (both in buffers and Telescope). Colors in patterns config
     will be ignored.
+
+                                         *todo-nvim-config-auto_refresh_buffers*
+auto_refresh_buffers ~
+    When `true`, automatically refreshes any open buffer containing the
+    TODO.md file after adding a new todo. This ensures the buffer stays
+    in sync with changes made via `:TodoAdd`.
+
+    Default: `true`
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
