@@ -1,7 +1,7 @@
 local M = {}
 
-local config = require("todo-nvim.config")
-local utils = require("todo-nvim.utils")
+local config = require("todo.config")
+local utils = require("todo.utils")
 
 local function get_pattern_names()
   return vim.tbl_keys(config.get().patterns)

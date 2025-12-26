@@ -1,7 +1,7 @@
 local M = {}
 
-local config = require("todo-nvim.config")
-local utils = require("todo-nvim.utils")
+local config = require("todo.config")
+local utils = require("todo.utils")
 
 local function refresh_open_buffers(filepath)
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
