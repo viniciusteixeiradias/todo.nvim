@@ -8,6 +8,11 @@ A lightweight Neovim plugin for quick note-taking and TODO comment searching.
 - **Comment Search** - Find `TODO`, `FIXME`, and custom patterns in your codebase using Telescope
 - **Syntax Highlighting** - Highlight TODO comments directly in buffers with customizable colors
 
+## Screenshots
+
+![plugin-quick-todo-capture-codebase-todo-fixme-search-v0-vxkkb5qmoi8g1](https://github.com/user-attachments/assets/946ff5d4-04c5-438a-83e6-e2b30f2b461b)
+![plugin-quick-todo-capture-codebase-todo-fixme-search-v0-98z9lk63qi8g1](https://github.com/user-attachments/assets/34844273-821c-4c0d-b9ed-73674853bb3a)
+
 ## Requirements
 
 - Neovim >= 0.9.0
